@@ -1,4 +1,3 @@
-import {Button, Form} from "react-bootstrap";
 import {InlineModal} from "../components/Display/Modal/modal";
 import {Container} from "../components/Layout/container/container";
 
@@ -14,13 +13,7 @@ export const Welcome = () => {
          </p>
          <Container className={"py-2 text-center bg-dark w-75"}>
             <h4>Erstelle einen Raum</h4>
-            <Form className={"px-5 w-50 m-auto"}>
-               <Form.Group controlId={"createRoom"}>
-                  <Form.Label>Gib deinen Namen ein:</Form.Label>
-                  <Form.Control type={"text"}></Form.Control>
-                  <Button type={"submit"} className={"my-4"}>Raum erstellen!</Button>
-               </Form.Group>
-            </Form>
+
 
          </Container>
       </Container>
