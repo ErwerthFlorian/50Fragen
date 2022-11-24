@@ -1,11 +1,15 @@
 import {InlineModal} from "../components/Display/Modal/modal";
 import {Container} from "../components/Layout/container/container";
 import {Form, FormHeader, FormSubmitButton} from "../components/Display/Form/Form";
+import {useTheme} from "../themes/useTheme";
+import {DefaultThemes} from "../themes/ThemeConfig";
 
 const modalText = "Die Spielraum-ID wird benötigt, um Server-Intern die Nutzenden zu den richtigen Räumen hinzuzufügen. Wie bei einem Hotel hat jeder Spielraum eine Nummer, die eine Spielesitzung durchführen. Wenn ein neuer Spielraum geöffnet wird und ein Spieler beitreten möchte, so sucht der Server nach der Spielraum-ID und ordnet den Spieler zu diesem Raum hinzu. Auch die Datenzuweisung funktioniert über diese Spielraum-ID."
 export const Welcome = () => {
+   const {setTheme} = useTheme();
    return (
       <Container >
+         <button onClick={() => setTheme?.(currentTheme => currentTheme === DefaultThemes.light ? DefaultThemes.dark : DefaultThemes.light)}>Toggle Theme</button>
          <h1 className={"h1  text-center"}>Willkommen bei 50 Fragen</h1>
          <p className={"my-5 mx-5"}>Auf dieser Internetseite könnt Ihr viele Fragenpakete von den Jungs von Pietsmiet
             nachspielen.

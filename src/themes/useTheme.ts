@@ -4,5 +4,11 @@ import {css} from "@emotion/css";
 
 export const useTheme = () => {
    const {theme, setTheme} = useContext(ThemeContext);
-   return {theme: css({...theme}), setTheme};
+   return {theme, setTheme};
 }
+
+export const useThemeWithCss = () => {
+   const {theme, setTheme} = useContext(ThemeContext);
+   return {theme: css({...theme}), setTheme}
+}
+

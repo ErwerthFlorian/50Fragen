@@ -1,10 +1,11 @@
 import {WithChildren} from "../../../types";
 import {ReactComponent as Close} from "../../../media/svgs/close.svg";
 import styles from "./styles";
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {Button} from "../Button/button";
-import {useTheme} from "../../../themes/useTheme";
+import {useTheme, useThemeWithCss} from "../../../themes/useTheme";
 import {getClasses} from "../types";
+import {css, cx} from "@emotion/css";
 
 interface ModalProps extends WithChildren {
    open: boolean,
@@ -35,6 +36,9 @@ const modalClassNames = getClasses(styles);
 
 export const Modal = ({open, children, onClose}: ModalProps) => {
    const modalRef = useRef<HTMLDialogElement>(null)
+   const {theme} = useTheme();
+
+   const dialogClasses = useMemo(() => cx(css({backgroundColor: theme.backgroundColor}, modalClassNames.dialog)), [theme]);
 
    useEffect(() => {
       if(open) {
@@ -47,14 +51,14 @@ export const Modal = ({open, children, onClose}: ModalProps) => {
       onClose();
    }, [onClose, modalRef])
 
-   return <dialog className={modalClassNames.dialog} ref={modalRef}><button className={modalClassNames.modalClose} onClick={close}><Close className={modalClassNames.modalCloseIcon}/></button>{children}</dialog>
+   return <dialog className={dialogClasses} ref={modalRef}><button className={modalClassNames.modalClose} onClick={close}><Close className={modalClassNames.modalCloseIcon}/></button>{children}</dialog>
 }
 
 export const ModalTitle = ({children}: WithChildren) => {
-   const {theme} = useTheme();
+   const {theme} = useThemeWithCss();
    return <h3 className={theme}>{children}</h3>
 }
 export const ModalText = ({children}: WithChildren) => {
-   const {theme} = useTheme();
+   const {theme} = useThemeWithCss();
    return <p className={theme}>{children}</p>
 }
