@@ -49,7 +49,7 @@ export const DefaultThemes: Record<ThemedComponents, Theme> = {
       },
       dark: {
          color: ThemeColors.WHITE,
-         backgroundColor: ThemeColors.DARK_GREY
+         backgroundColor: ThemeColors.GREY,
       },
    },
    Default: {

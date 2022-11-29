@@ -7,7 +7,6 @@ import {ThemeColors} from "./themes/ThemeConfig";
 const body = document.body;
 export const App = () => {
    const {theme} = useTheme();
-   console.log(theme);
    useEffect(() => {
       body.style.color = theme.color as string ?? ThemeColors.GREY;
       body.style.backgroundColor = theme.backgroundColor as string ?? ThemeColors.WHITE;

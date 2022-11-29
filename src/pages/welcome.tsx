@@ -1,6 +1,6 @@
 import {InlineModal} from "../components/Display/Modal/modal";
 import {Container} from "../components/Layout/container/container";
-import {Form, FormHeader, FormSubmitButton} from "../components/Display/Form/Form";
+import {Form, FormSubmitButton} from "../components/Display/Form/Form";
 import {useTheme} from "../themes/useTheme";
 import {Header} from "../components/Display/TextDisplays/Header/Header";
 import {Paragraph} from "../components/Display/TextDisplays/Paragraph/Paragraph";
@@ -20,7 +20,7 @@ export const Welcome = () => {
                   </>}</Paragraph>
                   <Container>
                         <Form>
-                              <FormHeader>Erstelle einen Raum</FormHeader>
+                              <Header headerStyle={"h2"}>Erstelle einen Raum</Header>
                               <FormSubmitButton>Raum erstellen</FormSubmitButton>
                         </Form>
 
