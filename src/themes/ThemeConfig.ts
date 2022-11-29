@@ -1,22 +1,42 @@
-type Themes = "light" | "dark"
+import {CSSInterpolation} from "@emotion/css";
+import {CSSObject} from "@emotion/react";
 
-export interface Theme {
-      color: string,
-      backgroundColor: string
+export type Themes = "light" | "dark"
+
+export const ThemeColors = {
+   WHITE:"#fafafa",
+   GREY:"#3f3f3f",
+   DARK_GREY: "#1c1c1c"
 }
 
-export enum ThemeColors {
-   WHITE="#fafafa",
-   GREY="#3f3f3f",
+const ThemedComponents = {
+   Header: "Header",
+   Default: "Default",
 }
 
-export const DefaultThemes: Record<Themes, Theme> = {
-   light: {
-      color: ThemeColors.GREY,
-      backgroundColor: ThemeColors.WHITE
+export type Theme = Record<Themes, CSSObject>;
+
+export type ThemedComponents = keyof typeof ThemedComponents;
+
+export const DefaultThemes: Record<ThemedComponents, Theme> = {
+   Header: {
+      light: {
+         color: ThemeColors.DARK_GREY,
+         backgroundColor: "WHITE",
+      },
+      dark: {
+         color: "WHITE",
+         backgroundColor: "GREY"
+      }
    },
-   dark: {
-      color: ThemeColors.WHITE,
-      backgroundColor: ThemeColors.GREY
+   Default: {
+      light: {
+            color: "GREY",
+            backgroundColor: "WHITE",
+      },
+      dark: {
+         color: "WHITE",
+         backgroundColor: "GREY"
+      }
    }
 }

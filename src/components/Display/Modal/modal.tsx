@@ -37,7 +37,6 @@ const modalClassNames = getClasses(styles);
 export const Modal = ({open, children, onClose}: ModalProps) => {
    const modalRef = useRef<HTMLDialogElement>(null)
    const {theme} = useTheme();
-
    const dialogClasses = useMemo(() => cx(css({backgroundColor: theme.backgroundColor}, modalClassNames.dialog)), [theme]);
 
    useEffect(() => {

@@ -14,7 +14,8 @@ interface Button extends WithChildren {
 const classNames = getClasses(styles);
 
 export const Button = ({children, onClick, className}: Button) => {
-   const {theme} = useTheme();
+   const {theme} = useTheme("Default");
+
    const classes = useMemo(() => cx(theme.color, theme.backgroundColor, classNames.button, className), [theme]);
    return <button className={classes} onClick={onClick}>{children}</button>
 }
