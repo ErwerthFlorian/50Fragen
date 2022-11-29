@@ -1,4 +1,3 @@
-import {CSSInterpolation} from "@emotion/css";
 import {CSSObject} from "@emotion/react";
 
 export type Themes = "light" | "dark"
@@ -12,6 +11,7 @@ export const ThemeColors = {
 const ThemedComponents = {
    Header: "Header",
    Default: "Default",
+   Paragraph: "Paragraph",
 }
 
 export type Theme = Record<Themes, CSSObject>;
@@ -28,6 +28,16 @@ export const DefaultThemes: Record<ThemedComponents, Theme> = {
          color: "WHITE",
          backgroundColor: "GREY"
       }
+   },
+   Paragraph: {
+      light:{
+         color: ThemeColors.GREY,
+         backgroundColor: ThemeColors.WHITE
+      },
+      dark: {
+         color: ThemeColors.WHITE,
+         backgroundColor: ThemeColors.DARK_GREY
+      },
    },
    Default: {
       light: {

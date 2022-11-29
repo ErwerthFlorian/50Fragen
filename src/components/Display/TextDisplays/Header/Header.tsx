@@ -1,7 +1,7 @@
-import {WithChildren} from "../../../types";
+import {WithChildren} from "../../../../types";
 import React from "react";
-import {useTheme} from "../../../themes/useTheme";
 import {css} from "@emotion/css";
+import {useTheme} from "../../../../themes/useTheme";
 
 export const HeaderStyles = {
       h1: "h1",
