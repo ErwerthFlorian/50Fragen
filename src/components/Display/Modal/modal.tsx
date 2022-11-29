@@ -20,10 +20,12 @@ interface InlineModalProps {
 
 export const InlineModal = ({buttonContent, modalTitel, modalText}: InlineModalProps) => {
    const [showModal, setShowModal] = useState(false);
-
+   const InlineButtonClasses = useMemo(() =>
+      css({textDecoration: "underline", outline: "none"})
+   , []);
    return (
       <>
-         <Button onClick={() => setShowModal(true)}>{buttonContent}</Button>
+         <Button className={InlineButtonClasses} onClick={() => setShowModal(true)}>{buttonContent}</Button>
          {<>
             <Modal open={showModal} onClose={() => setShowModal(false)}>
                <ModalTitle>{modalTitel}</ModalTitle>
@@ -54,10 +56,10 @@ export const Modal = ({open, children, onClose}: ModalProps) => {
 }
 
 export const ModalTitle = ({children}: WithChildren) => {
-   const {theme} = useThemeWithCss();
-   return <h3 className={theme}>{children}</h3>
+   const {themeClasses} = useThemeWithCss();
+   return <h3 className={themeClasses}>{children}</h3>
 }
 export const ModalText = ({children}: WithChildren) => {
-   const {theme} = useThemeWithCss();
-   return <p className={theme}>{children}</p>
+   const {themeClasses} = useThemeWithCss();
+   return <p className={themeClasses}>{children}</p>
 }
