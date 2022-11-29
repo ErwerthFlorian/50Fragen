@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {ThemeContext} from "./ThemeContext";
-import {DefaultThemes, ThemedComponents, Themes} from "./ThemeConfig";
+import {DefaultThemes, ThemedComponents} from "./ThemeConfig";
 import {css} from "@emotion/css";
 
 export const useTheme = (component?: ThemedComponents) => {
@@ -9,7 +9,7 @@ export const useTheme = (component?: ThemedComponents) => {
 }
 
 export const useThemeWithCss = (component?: ThemedComponents) => {
-   const {theme, setTheme} = useContext(ThemeContext);
-   return {theme: css(theme)}
+   const {theme, setTheme} = useTheme(component);
+   return {themeClasses: css(theme), setTheme}
 }
 

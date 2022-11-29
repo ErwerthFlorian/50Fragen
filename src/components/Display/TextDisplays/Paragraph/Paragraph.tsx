@@ -1,9 +1,7 @@
 import {WithChildren} from "../../../../types";
-import {useTheme} from "../../../../themes/useTheme";
-import {css} from "@emotion/css";
+import {useThemeWithCss} from "../../../../themes/useTheme";
 
 export const Paragraph = ({children}: WithChildren) => {
-      const {theme} = useTheme("Paragraph");
-      const classes = css({color: theme.color, backgroundColor: theme.backgroundColor});
-      return <p className={classes}>{children}</p>
+      const {themeClasses} = useThemeWithCss("Paragraph");
+      return <p className={themeClasses}>{children}</p>
 }

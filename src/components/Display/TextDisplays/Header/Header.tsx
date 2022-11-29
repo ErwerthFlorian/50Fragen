@@ -1,7 +1,6 @@
 import {WithChildren} from "../../../../types";
 import React from "react";
-import {css} from "@emotion/css";
-import {useTheme} from "../../../../themes/useTheme";
+import {useThemeWithCss} from "../../../../themes/useTheme";
 
 export const HeaderStyles = {
       h1: "h1",
@@ -16,8 +15,8 @@ interface HeaderProps extends WithChildren{
 }
 
 export const Header = ({ headerStyle, children }: HeaderProps) => {
-      const {theme} = useTheme("Header");
+      const {themeClasses} = useThemeWithCss("Header");
       return React.createElement(headerStyle, {
-            children, className: css({color: theme.color, backgroundColor: theme.backgroundColor})
+            children, className: themeClasses
       });
 }

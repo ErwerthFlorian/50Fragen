@@ -12,6 +12,7 @@ const ThemedComponents = {
    Header: "Header",
    Default: "Default",
    Paragraph: "Paragraph",
+   Button: "Button",
 }
 
 export type Theme = Record<Themes, CSSObject>;
@@ -22,11 +23,23 @@ export const DefaultThemes: Record<ThemedComponents, Theme> = {
    Header: {
       light: {
          color: ThemeColors.DARK_GREY,
-         backgroundColor: "WHITE",
+         backgroundColor: ThemeColors.WHITE,
       },
       dark: {
-         color: "WHITE",
-         backgroundColor: "GREY"
+         color: ThemeColors.WHITE,
+         backgroundColor: ThemeColors.GREY
+      }
+   },
+   Button: {
+      light: {
+         color: ThemeColors.DARK_GREY,
+         backgroundColor: ThemeColors.WHITE,
+         outline: `3px solid ${ThemeColors.DARK_GREY}`
+      },
+      dark: {
+         color: ThemeColors.WHITE,
+         backgroundColor: ThemeColors.GREY,
+         outline: `1px solid ${ThemeColors.WHITE}`
       }
    },
    Paragraph: {
@@ -41,12 +54,12 @@ export const DefaultThemes: Record<ThemedComponents, Theme> = {
    },
    Default: {
       light: {
-            color: "GREY",
-            backgroundColor: "WHITE",
+            color: ThemeColors.GREY,
+            backgroundColor: ThemeColors.WHITE,
       },
       dark: {
-         color: "WHITE",
-         backgroundColor: "GREY"
+         color: ThemeColors.WHITE,
+         backgroundColor: ThemeColors.GREY
       }
    }
 }

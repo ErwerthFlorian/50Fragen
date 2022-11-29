@@ -1,5 +1,6 @@
 export default {
    button: {
-      fontSize: 12,
+      all: "unset",
+      fontSize: 15,
    }
 } as const;
