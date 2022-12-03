@@ -15,14 +15,11 @@ export const Form = ({children}: WithChildren) => {
    </form>
 }
 
-export const FormTextInput = ({label}:{label: string}) => {
-   return <div><label>{label}</label><input type={"text"} /></div>
-}
 
 export const FormHeader = ({children}: WithChildren) => {
    return <h2 className={formClass.header}>{children}</h2>
 }
 
 export const FormSubmitButton = ({children}: WithChildren) => {
-   return <button type={"submit"}>{children}</button>
+   return <button className={formClass.button} type={"submit"}>{children}</button>
 }

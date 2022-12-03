@@ -1,3 +1,5 @@
+import {Breakpoint, getMaxBreakpoint} from "../../../util/styles/breakpoint";
+
 export default {
    modalClose: {
       margin: 5,
@@ -21,6 +23,9 @@ export default {
       transform: "translate(-50%, -50%)",
       borderRadius: 10,
       width: "50vw",
+      ...getMaxBreakpoint(Breakpoint.SMALL, {
+         width: "90vw",
+      }),
       "&::backdrop": {
          background: "rgba(0, 0, 0, 0.5)"
       }

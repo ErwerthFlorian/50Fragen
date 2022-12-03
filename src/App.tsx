@@ -13,9 +13,11 @@ export const App = () => {
    }, [theme])
 
    return (
-      <BrowserRouter><Routes>
-         <Route path={"/"} element={<Welcome/>}/>
-         <Route path={"*"} element={<Navigate to={"/"}/>}/>
-      </Routes></BrowserRouter>
+      <BrowserRouter>
+         <Routes>
+            <Route path={"/"} element={<Welcome/>}/>
+            <Route path={"*"} element={<Navigate to={"/"}/>}/>
+         </Routes>
+      </BrowserRouter>
    );
 }

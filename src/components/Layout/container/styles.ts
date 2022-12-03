@@ -1,9 +1,14 @@
+import {Breakpoint, getMaxBreakpoint, getMinMaxBreakpoint} from "../../../util/styles/breakpoint";
+
 export default {
   container: {
-    "@media screen and (max-width: 768px)": {
+    ...getMaxBreakpoint(Breakpoint.SMALL, {
       margin: 50
-    },
-    marginTop: 50,
-    marginInline: 300,
+    }),
+    ...getMinMaxBreakpoint(Breakpoint.SMALL, Breakpoint.MEDIUM, {
+      margin: 100,
+    }),
+    paddingTop: 50,
+    marginInline: "25%",
   }
 } as const;
