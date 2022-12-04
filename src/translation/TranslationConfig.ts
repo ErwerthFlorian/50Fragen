@@ -4,7 +4,6 @@ const TranslatedComponents = {
    JoinRoomButton: "JoinRoomButton",
    AvatarLabel: "AvatarLabel",
    AvatarUploader: "AvatarUploader",
-   AvatarButton: "AvatarButton",
    Empty: "",
 };
 
@@ -24,10 +23,6 @@ export const Translations: Record<TranslatedComponents, Translation> = {
    AvatarUploader: {
       de: "Eigenen Avatar benutzen",
       en: "Use own avatar",
-   },
-   AvatarButton: {
-      de: "Dieses Bild und Namen verwenden",
-      en: "Use this picture and name",
    },
    CreateRoomButton: {
       de: "RAUM ERSTELLEN",

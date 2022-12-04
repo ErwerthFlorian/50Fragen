@@ -19,7 +19,6 @@ export const Avatar = () => {
    const {themeClasses} = useThemeWithCss("Avatar");
    const avatarLabel = useTranslation("AvatarLabel");
    const avatarUploader = useTranslation("AvatarUploader");
-   const avatarButton = useTranslation("AvatarButton");
    const avatarClass = useMemo(() => cx(avatarClasses.avatar, themeClasses), [themeClasses]);
    const hoverClass = useMemo(() => cx(avatarClasses.paragraphPositioningWrapper, css({filter: isHovering ? "opacity(1)":"opacity(0)"})), [isHovering]);
    const dispatch = useDispatch();
@@ -37,8 +36,7 @@ export const Avatar = () => {
          <div onPointerEnter={() => setIsHovering(true)} onPointerLeave={() => setIsHovering(false)} onClick={uploadAvatar} className={avatarClass}>{image}</div>
       </div>
         <div className={hoverClass}><Paragraph>{avatarUploader}</Paragraph></div>
-      <Input onNameChange={handleNameChange} label={avatarLabel}/>
-   <button>{avatarButton}</button></div>
+      <Input onNameChange={handleNameChange} label={avatarLabel}/></div>
 
 }
 
