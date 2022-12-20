@@ -5,11 +5,12 @@ import {Avatar} from "../components/Display/Avatar/Avatar";
 import {RoomButton} from "../components/Display/Button/button";
 import {useTranslation} from "../translation/useTranslation";
 import {Input} from "../components/Input/Input";
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {ErrorMessage} from "../components/Display/Error/ErrorMessage";
 import {socket} from "../socket/socket";
 import {useNavigate} from "react-router-dom";
 import {Paths} from "../App";
+import {GameContext} from "../context/GameContext";
 
 export const Home = () => {
    return (
@@ -34,7 +35,7 @@ const CreateRoom = () => {
 
 const JoinRoom = () => {
    const translation = useTranslation("JoinRoomLabel");
-   const [roomNumber, setRoomNumber] = useState<string>("");
+   const {roomNumber, setRoomNumber} = useRoomNumber();
    const hasError = useMemo(() => roomNumber.length > 5, [roomNumber]);
    const navigate = useNavigate();
    const handleJoinRoom = useCallback(() => {
@@ -51,3 +52,11 @@ const JoinRoom = () => {
    </div>)
 }
 
+const useRoomNumber = () => {
+   const [roomNumber, setNumber] = useState<string>("");
+   const {setRoomNumber} = useContext(GameContext);
+   useEffect(() => {
+      setRoomNumber?.(parseFloat(roomNumber));
+   }, [roomNumber])
+   return {roomNumber, setRoomNumber: setNumber};
+}

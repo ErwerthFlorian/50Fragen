@@ -1,15 +1,16 @@
 import styles from "./styles";
 import {getClasses} from "../types";
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {Input} from "../../Input/Input";
 import {useTheme} from "../../../themes/useCurrentTheme";
 import {css, cx} from "@emotion/css";
 import {Paragraph} from "../TextDisplays/Paragraph/Paragraph";
 import {useTranslation} from "../../../translation/useTranslation";
+import {GameContext} from "../../../context/GameContext";
 
 const avatarClasses = getClasses(styles);
 
-export type AvatarURL = `blob:http://${string}`
+export type AvatarURL = `blob:http://${string}` | undefined;
 
 export const Avatar = () => {
    const {image, uploadAvatar} = useImage();
@@ -19,9 +20,10 @@ export const Avatar = () => {
    const avatarUploader = useTranslation("AvatarUploader");
    const avatarClass = useMemo(() => cx(avatarClasses.avatar, css({color: theme.textColor})), [theme]);
    const hoverClass = useMemo(() => cx(avatarClasses.paragraphPositioningWrapper, css({filter: isHovering ? "opacity(1)":"opacity(0)"})), [isHovering]);
-   const [name, setName] = useState<string>("");
+   const {name, setName} = useName();
 
    const handleNameChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+
       setName(e.currentTarget.value);
    }, []);
 
@@ -33,10 +35,20 @@ export const Avatar = () => {
       <Input hasError={false} onValueChange={handleNameChange} label={avatarLabel}/></div>
 }
 
+const useName =()=>{
+   const [name, setName] = useState<string>("");
+   const {setPlayerName} = useContext(GameContext);
+   useEffect(() => {
+      setPlayerName?.(name);
+   }, [name])
+   return {name, setName};
+}
+
 const useImage = () => {
 
    const defaultAvatar = useThemedAvatarSVG();
-   const [image, setImage] = useState<AvatarURL | undefined>();
+   const [image, setImage] = useState<AvatarURL>();
+   const {setPlayerAvatar} = useContext(GameContext)
 
    const imageClasses = useMemo(() => css({
       width: 200,
@@ -56,7 +68,9 @@ const useImage = () => {
          link.addEventListener("change", () => {
             const file = link.files?.[0];
             if (file) {
-               setImage(URL.createObjectURL(file) as AvatarURL);
+               const blob = URL.createObjectURL(file) as AvatarURL;
+               setImage(blob);
+               setPlayerAvatar?.(blob);
             }
             link.remove();
          });

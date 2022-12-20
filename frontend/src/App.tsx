@@ -4,6 +4,7 @@ import React, {useEffect} from "react";
 import {useTheme} from "./themes/useCurrentTheme";
 import {CreateRoom} from "./pages/CreateRoom";
 import {GameRoom} from "./pages/GameRoom";
+import {GameContextProvider} from "./context/GameContext";
 
 const body = document.body;
 export const App = () => {
@@ -14,14 +15,16 @@ export const App = () => {
    }, [theme])
 
    return (
-      <BrowserRouter>
-         <Routes>
-            <Route path={Paths.HOME} element={<Home/>}/>
-            <Route path={Paths.CREATEROOM} element={<CreateRoom />} />
-            <Route path={Paths.GAMEROOM} element={<GameRoom />} />
-            <Route path={Paths.FALLBACK} element={<Navigate to={Paths.HOME}/>}/>
-         </Routes>
-      </BrowserRouter>
+      <GameContextProvider>
+         <BrowserRouter>
+            <Routes>
+               <Route path={Paths.HOME} element={<Home/>}/>
+               <Route path={Paths.CREATEROOM} element={<CreateRoom />} />
+               <Route path={Paths.GAMEROOM} element={<GameRoom />} />
+               <Route path={Paths.FALLBACK} element={<Navigate to={Paths.HOME}/>}/>
+            </Routes>
+         </BrowserRouter>
+      </GameContextProvider>
    );
 }
 
