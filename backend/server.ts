@@ -45,15 +45,6 @@ export class ServerSocket {
          console.log(this.rooms);
       })
 
-      this.adapter.on("create-room", (room) => {
-         console.log("Created room with ", room);
-         console.log(this.rooms);
-      })
-      this.adapter.on("join-room", (room, socketId) => {
-         console.log("Player ", socketId, " joined ", room);
-         console.log(this.rooms);
-      })
-
       roomListeners(this.adapter, socket);
    }
 }

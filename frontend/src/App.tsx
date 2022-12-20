@@ -1,8 +1,9 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {Welcome} from "./pages/Welcome";
+import {Home} from "./pages/Home";
 import React, {useEffect} from "react";
 import {useTheme} from "./themes/useCurrentTheme";
 import {CreateRoom} from "./pages/CreateRoom";
+import {GameRoom} from "./pages/GameRoom";
 
 const body = document.body;
 export const App = () => {
@@ -15,10 +16,20 @@ export const App = () => {
    return (
       <BrowserRouter>
          <Routes>
-            <Route path={"/"} element={<Welcome/>}/>
-            <Route path={"/create-room"} element={<CreateRoom />} />
-            <Route path={"*"} element={<Navigate to={"/"}/>}/>
+            <Route path={Paths.HOME} element={<Home/>}/>
+            <Route path={Paths.CREATEROOM} element={<CreateRoom />} />
+            <Route path={Paths.GAMEROOM} element={<GameRoom />} />
+            <Route path={Paths.FALLBACK} element={<Navigate to={Paths.HOME}/>}/>
          </Routes>
       </BrowserRouter>
    );
 }
+
+export const Paths = {
+   HOME: "/",
+   CREATEROOM: "/create-room",
+   GAMEROOM: "/game-room",
+   FALLBACK: "*",
+}
+
+export type Paths = keyof typeof Paths;

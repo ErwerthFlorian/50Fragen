@@ -1,6 +1,6 @@
 import styles from "./styles";
 import {getClasses} from "../types";
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 import {Input} from "../../Input/Input";
 import {useTheme} from "../../../themes/useCurrentTheme";
 import {css, cx} from "@emotion/css";
@@ -9,8 +9,10 @@ import {useTranslation} from "../../../translation/useTranslation";
 
 const avatarClasses = getClasses(styles);
 
+export type AvatarURL = `blob:http://${string}`
+
 export const Avatar = () => {
-   const {image, uploadAvatar} = useImageWithLoader();
+   const {image, uploadAvatar} = useImage();
    const [isHovering, setIsHovering] = useState(false);
    const theme = useTheme();
    const avatarLabel = useTranslation("AvatarLabel");
@@ -31,22 +33,10 @@ export const Avatar = () => {
       <Input hasError={false} onValueChange={handleNameChange} label={avatarLabel}/></div>
 }
 
-const useImageWithLoader = () => {
+const useImage = () => {
 
    const defaultAvatar = useThemedAvatarSVG();
-   const [image, setImage] = useState<string>(defaultAvatar);
-
-   const [showLoader, setShowLoader] = useState(false);
-   const showImage = useMemo(() => image && !showLoader, [showLoader, image])
-
-   useEffect(() => {
-      //upload image if set
-      if (showLoader) {
-         setTimeout(() => {
-            setShowLoader(false);
-         }, 50)
-      }
-   }, [showLoader, image])
+   const [image, setImage] = useState<AvatarURL | undefined>();
 
    const imageClasses = useMemo(() => css({
       width: 200,
@@ -56,11 +46,8 @@ const useImageWithLoader = () => {
       transform: "translate(-50%, -50%)"
    }), []);
 
-   const localImage = !showImage ? <div style={{position: "relative", top: "50%"}}>Loading...</div> :
-      <img alt={"round foo"} className={imageClasses} src={image}/>
-
    return {
-      image: localImage,
+      image: <img alt={"round foo"} className={imageClasses} src={image ?? defaultAvatar}/>,
       uploadAvatar: () => {
          const link = document.createElement("input");
          link.type = "file";
@@ -69,7 +56,7 @@ const useImageWithLoader = () => {
          link.addEventListener("change", () => {
             const file = link.files?.[0];
             if (file) {
-               setImage(URL.createObjectURL(file));
+               setImage(URL.createObjectURL(file) as AvatarURL);
             }
             link.remove();
          });

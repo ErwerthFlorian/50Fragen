@@ -7,10 +7,11 @@ import {useTranslation} from "../translation/useTranslation";
 import {Input} from "../components/Input/Input";
 import {useCallback, useMemo, useState} from "react";
 import {ErrorMessage} from "../components/Display/Error/ErrorMessage";
-import {joinRoom, socket} from "../socket/socket";
+import {socket} from "../socket/socket";
 import {useNavigate} from "react-router-dom";
+import {Paths} from "../App";
 
-export const Welcome = () => {
+export const Home = () => {
    return (
       <Container>
          <MainHeader headerStyle={"h1"} />
@@ -26,8 +27,7 @@ export const Welcome = () => {
 const CreateRoom = () => {
    const navigate = useNavigate();
    const handleCreateRoom = useCallback(() => {
-      socket.emit("createRoom");
-      navigate("/create-room");
+      navigate(Paths.CREATEROOM);
    }, []);
    return <RoomButton translationComponent={"CreateRoomButton"} onClick={handleCreateRoom} />
 }
@@ -36,9 +36,12 @@ const JoinRoom = () => {
    const translation = useTranslation("JoinRoomLabel");
    const [roomNumber, setRoomNumber] = useState<string>("");
    const hasError = useMemo(() => roomNumber.length > 5, [roomNumber]);
-
+   const navigate = useNavigate();
    const handleJoinRoom = useCallback(() => {
-      joinRoom(roomNumber, "Peter");
+         socket.emit("joinRoom", roomNumber);
+         socket.on("joinedRoom", () => {
+            navigate(Paths.GAMEROOM);
+         });
    }, [roomNumber])
 
    return (<div>
@@ -47,3 +50,4 @@ const JoinRoom = () => {
       <RoomButton translationComponent={"JoinRoomButton"} onClick={handleJoinRoom} />
    </div>)
 }
+

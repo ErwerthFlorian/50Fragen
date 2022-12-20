@@ -20,7 +20,7 @@ const isPlayerInRoom = (room: Room, id: string) => {
 
 export const joinRoom = (roomNumber: string, socket: Socket) => {
    socket.join(roomNumber);
-   return "Joined room with number".concat(" ", roomNumber);
+   return {name: Math.random().toString(), avatar: undefined};
 }
 
 export const roomListeners = (adapter: Adapter, socket: Socket) => {
@@ -28,10 +28,10 @@ export const roomListeners = (adapter: Adapter, socket: Socket) => {
    socket.on("createRoom", () => {
       const roomNumber = createRandomId();
       socket.join(roomNumber);
-      socket.emit("roomCreated", roomNumber)
+      socket.emit("roomCreated", roomNumber);
    })
 
    socket.on("joinRoom", (roomNumber) => {
-      socket.emit("joinedRoom", joinRoom(roomNumber, socket));
+      socket.to(roomNumber).emit("joinedRoom", joinRoom(roomNumber, socket));
    });
 }
