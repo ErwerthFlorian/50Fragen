@@ -3,9 +3,9 @@ import {createContext, useEffect, useState} from "react";
 import {WithChildren} from "../types";
 
 interface GameContext {
-   roomNumber: number | undefined,
+   roomNumber: string | undefined,
    playerName: string | undefined,
-   setRoomNumber?: ReactDispatch<number | undefined>
+   setRoomNumber?: ReactDispatch<string | undefined>
    setPlayerName?: ReactDispatch<string | undefined>,
    setPlayerAvatar?: ReactDispatch<AvatarURL>,
    avatar: AvatarURL,
@@ -19,7 +19,7 @@ type ReactDispatch<T> =  React.Dispatch<React.SetStateAction<T>>;
 
 export const GameContextProvider = ({children}: WithChildren) => {
 
-   const [roomNumber, setRoomNumber] = useState<number | undefined>(undefined);
+   const [roomNumber, setRoomNumber] = useState<string | undefined>(undefined);
    const [playerName, setPlayerName] = useState<string | undefined>(undefined);
    const [playerAvatar, setPlayerAvatar] = useState<AvatarURL>(undefined);
 

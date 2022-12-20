@@ -3,20 +3,23 @@ import {getClasses} from "../types";
 import {Button} from "../Button/button";
 import {Topic as TopicType} from "../../../questions/Topics";
 import {useTranslation} from "../../../translation/useTranslation";
-import {useCallback} from "react";
+import {useCallback, useContext} from "react";
 import {socket} from "../../../socket/socket";
 import {useNavigate} from "react-router-dom";
 import {Paths} from "../../../App";
+import {GameContext} from "../../../context/GameContext";
 
 const topicClasses = getClasses(styles);
 export const Topic = ({name, date, numQuestions, difficulty}: TopicType) => {
    const translations = useTopicTranslation();
    const navigate = useNavigate();
+   const {setRoomNumber} = useContext(GameContext);
 
    const handleRoomCreation = useCallback(() => {
       socket.emit("createRoom", name);
-      socket.on("roomCreated", (roomNumber) => {
+      socket.on("roomCreated", (roomNumber: string) => {
          console.log("room with number: ", roomNumber, " created.");
+         setRoomNumber?.(roomNumber);
          navigate(Paths.GAMEROOM);
       })
    }, []);

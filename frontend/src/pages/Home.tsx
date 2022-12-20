@@ -56,7 +56,7 @@ const useRoomNumber = () => {
    const [roomNumber, setNumber] = useState<string>("");
    const {setRoomNumber} = useContext(GameContext);
    useEffect(() => {
-      setRoomNumber?.(parseFloat(roomNumber));
+      setRoomNumber?.(roomNumber);
    }, [roomNumber])
    return {roomNumber, setRoomNumber: setNumber};
 }
