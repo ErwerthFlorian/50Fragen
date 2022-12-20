@@ -1,6 +1,7 @@
 import {Server, Socket} from "socket.io";
 import {ClientToServerEvents, ServerToClientEvents, SocketData} from "./types";
 import {roomListeners} from "./rooms";
+import {Adapter} from "socket.io-adapter";
 
 
 const express = require("express");
@@ -14,13 +15,16 @@ server.listen(8080, () => {
    console.log("Server is listening on 8080");
 });
 
-
 export class ServerSocket {
    public static instance: ServerSocket;
    public io: Server<ClientToServerEvents, ServerToClientEvents, SocketData>;
+   public rooms: Map<string, Set<string>>;
+   public adapter: Adapter;
 
    constructor(server: typeof http) {
-      ServerSocket.instance = this;
+      if(ServerSocket.instance === undefined) {
+         ServerSocket.instance = this;
+      }
       this.io = new Server<ClientToServerEvents, ServerToClientEvents, SocketData>(server, {
          cors: {
             methods: "*",
@@ -28,8 +32,9 @@ export class ServerSocket {
             origin: "*",
          }
       });
-
+      this.rooms = this.io.of("/").adapter.rooms;
       this.io.on("connect", this.startListeners);
+      this.adapter = this.io.of("/").adapter;
    }
 
    startListeners = (socket: Socket) => {
@@ -37,9 +42,19 @@ export class ServerSocket {
 
       socket.on("disconnect", () => {
          console.log("Socket", socket.id, "disconnected.");
+         console.log(this.rooms);
       })
 
-      roomListeners(socket);
+      this.adapter.on("create-room", (room) => {
+         console.log("Created room with ", room);
+         console.log(this.rooms);
+      })
+      this.adapter.on("join-room", (room, socketId) => {
+         console.log("Player ", socketId, " joined ", room);
+         console.log(this.rooms);
+      })
+
+      roomListeners(this.adapter, socket);
    }
 }
 

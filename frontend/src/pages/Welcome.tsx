@@ -7,7 +7,7 @@ import {useTranslation} from "../translation/useTranslation";
 import {Input} from "../components/Input/Input";
 import {useCallback, useMemo, useState} from "react";
 import {ErrorMessage} from "../components/Display/Error/ErrorMessage";
-import {joinRoom} from "../socket/socket";
+import {joinRoom, socket} from "../socket/socket";
 import {useNavigate} from "react-router-dom";
 
 export const Welcome = () => {
@@ -26,6 +26,7 @@ export const Welcome = () => {
 const CreateRoom = () => {
    const navigate = useNavigate();
    const handleCreateRoom = useCallback(() => {
+      socket.emit("createRoom");
       navigate("/create-room");
    }, []);
    return <RoomButton translationComponent={"CreateRoomButton"} onClick={handleCreateRoom} />

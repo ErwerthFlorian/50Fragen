@@ -1,7 +1,7 @@
 import {Socket} from "socket.io";
 import {Room} from "./types";
+import {Adapter} from "socket.io-adapter";
 
-const rooms: Room[] = [];
 const numbers = "1234567890";
 
 const createRandomId = () => {
@@ -13,37 +13,25 @@ const createRandomId = () => {
    return id;
 }
 
-export const createRoom = (hostId: string) => {
-   const id = createRandomId();
-   rooms.push({id, hostId, players: []})
-   return id;
-}
 
-const getRoom = (roomNumber: string) => {
-   return rooms.find(room => room.id === roomNumber);
-}
 const isPlayerInRoom = (room: Room, id: string) => {
    return Boolean(room.players.find(player => player.id === id));
 }
 
-export const joinRoom = (roomNumber: string, socketId: string, name: string) => {
-   const room = getRoom(roomNumber);
-   if(room && !isPlayerInRoom(room, socketId)) {
-      room.players =  [...room.players, {id: socketId, name}];
-      console.log(room);
-      return "Joined room.";
-   }
-
-   return "Cannot join room.";
+export const joinRoom = (roomNumber: string, socket: Socket) => {
+   socket.join(roomNumber);
+   return "Joined room with number".concat(" ", roomNumber);
 }
 
-export const roomListeners = (socket: Socket) => {
-   socket.on("createRoom", (id, roomNumber) => {
-      socket.join(roomNumber)
-      socket.emit("roomCreated", createRoom(id))
+export const roomListeners = (adapter: Adapter, socket: Socket) => {
+
+   socket.on("createRoom", () => {
+      const roomNumber = createRandomId();
+      socket.join(roomNumber);
+      socket.emit("roomCreated", roomNumber)
    })
 
-   socket.on("joinRoom", (roomNumber, name) => {
-      socket.emit("joinedRoom", joinRoom(roomNumber, socket.id, name));
+   socket.on("joinRoom", (roomNumber) => {
+      socket.emit("joinedRoom", joinRoom(roomNumber, socket));
    });
 }
