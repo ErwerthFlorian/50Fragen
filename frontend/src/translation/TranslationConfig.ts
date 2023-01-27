@@ -11,6 +11,11 @@ const TranslatedComponents = {
    TopicDate: "TopicDate",
    TopicNumQuestions: "TopicNumQuestions",
    LanguageToggle: "LanguageToggle",
+   ExplainationHeader: "ExplainationHeader",
+   ExplainationStep1: "ExplainationStep1",
+   ExplainationStep2: "ExplainationStep2",
+   ExplainationStep3: "ExplainationStep3",
+   ExplainationStep4: "ExplainationStep4",
    Empty: "",
 };
 
@@ -61,9 +66,30 @@ export const Translations: Record<TranslatedComponents, Translation> = {
    JoinRoomLabel: {
       de: "Raumnummer",
       en: "Room number",
-   }, JoinRoomLabelError: {
+   },
+   JoinRoomLabelError: {
       de: "Bitte gib eine Nummer mit 5 Zahlen ein.",
       en: "Please enter a number with 5 digits.",
+   },
+   ExplainationHeader: {
+      de: "Wie es funktioniert",
+      en: "How it works",
+   },
+   ExplainationStep1: {
+      de: "Klicke auf SPIELERAUM ERSTELLEN",
+      en: "Click on CREATE GAME ROOM",
+   },
+   ExplainationStep2: {
+      de: "Wähle ein Spiel",
+      en: "Choose a game",
+   },
+   ExplainationStep3: {
+      de: "Wähle ein Spielekategorie",
+      en: "Choose a game category"
+   },
+   ExplainationStep4: {
+      de: "Teile den Link, um deine Freunde einzuladen",
+      en: "Share the link to invite your friends",
    },
    Empty: {
       de: "",

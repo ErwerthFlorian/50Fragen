@@ -12,10 +12,10 @@ export default {
       padding: "10px 15px",
       width: 250,
       lineHeight: "2em",
-      borderRadius: 5,
-      fontSize: 16,
+      borderRadius: 15,
+      fontSize: 24,
       textAlign: "center",
       position: "relative",
-
+      backgroundColor: "rgb(200,200,200)"
    }
 } as const;

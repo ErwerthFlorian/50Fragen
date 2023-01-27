@@ -1,7 +1,7 @@
 export default {
-   buttons: {
+   button: {
+      marginBlock: 50,
       display: "flex",
-      justifyContent:"center",
-      gap: 10,
+      justifyContent: "center",
    }
 }

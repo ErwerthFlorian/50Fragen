@@ -1,6 +1,7 @@
 export default {
    header: {
-      fontSize: 20,
+      fontSize: 50,
+      fontWeight: "bold",
       textAlign: "center",
    }
 } as const;

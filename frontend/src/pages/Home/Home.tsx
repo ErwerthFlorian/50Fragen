@@ -5,9 +5,9 @@ import {Paths} from "../../App";
 import {GameContext} from "../../context/GameContext";
 import {getClasses} from "../../components/types";
 import {Container} from "../../components/Container/Container";
-import {Avatar} from "../../components/Avatar/Avatar";
-import {RoomButton} from "../../components/Button/button";
 import {Title} from "../../components/Title/Title";
+import {Explaination} from "../../components/Explaination/Explaination";
+import {RoomButton} from "../../components/Button/Button";
 
 const cssClasses = getClasses(styles);
 
@@ -15,11 +15,10 @@ export const Home = () => {
    return (
       <Container>
          <Title/>
-         <Avatar/>
-         <div className={cssClasses.buttons}>
+         <div className={cssClasses.button}>
             <CreateRoom/>
-            <JoinRoom/>
          </div>
+         <Explaination/>
       </Container>
    );
 }
@@ -39,8 +38,6 @@ const JoinRoom = () => {
       navigate(Paths.GAMEROOM);
    }, [playerName, avatar, roomNumber])
 
-   return (<div>
-      <RoomButton translationComponent={"JoinRoomButton"} onClick={handleJoinRoom}/>
-   </div>)
+   return <RoomButton translationComponent={"JoinRoomButton"} onClick={handleJoinRoom}/>
 }
 
