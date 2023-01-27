@@ -3,6 +3,8 @@ import styles from "./styles";
 import {WithChildren} from "../../../types";
 import {TranslatedComponents} from "../../../translation/TranslationConfig";
 import {useTranslation} from "../../../translation/useTranslation";
+import {useMemo} from "react";
+import {cx} from "@emotion/css";
 
 
 interface Button extends WithChildren {
@@ -10,10 +12,13 @@ interface Button extends WithChildren {
    className?: string
 }
 
-const classNames = getClasses(styles);
+const cssClasses = getClasses(styles);
 
 export const Button = ({children, onClick, className}: Button) => {
-   return <button className={classNames.button} onClick={onClick}>{children}</button>
+
+   const buttonClasses = useMemo(() => cx(cssClasses.button, className), [className]);
+
+   return <button className={buttonClasses} onClick={onClick}>{children}</button>
 }
 
 interface RoomButton extends Button {
@@ -22,5 +27,5 @@ interface RoomButton extends Button {
 
 export const RoomButton = ({onClick, translationComponent }: Omit<RoomButton, "children">) => {
    const translation = useTranslation(translationComponent);
-   return <Button className={classNames.roomButton} onClick={onClick}>{translation}</Button>
+   return <Button className={cssClasses.roomButton} onClick={onClick}>{translation}</Button>
 }
