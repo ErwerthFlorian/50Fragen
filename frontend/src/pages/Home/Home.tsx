@@ -1,8 +1,7 @@
-import {useCallback, useContext} from "react";
+import {useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./styles";
 import {Paths} from "../../App";
-import {GameContext} from "../../context/GameContext";
 import {getClasses} from "../../components/types";
 import {Container} from "../../components/Container/Container";
 import {Title} from "../../components/Title/Title";
@@ -26,18 +25,8 @@ export const Home = () => {
 const CreateRoom = () => {
    const navigate = useNavigate();
    const handleCreateRoom = useCallback(() => {
-      navigate(Paths.CREATEROOM);
+      navigate(Paths.CHOOSE_TOPIC);
    }, []);
    return <RoomButton translationComponent={"CreateRoomButton"} onClick={handleCreateRoom}/>
-}
-
-const JoinRoom = () => {
-   const {avatar, playerName, roomNumber} = useContext(GameContext);
-   const navigate = useNavigate();
-   const handleJoinRoom = useCallback(() => {
-      navigate(Paths.GAMEROOM);
-   }, [playerName, avatar, roomNumber])
-
-   return <RoomButton translationComponent={"JoinRoomButton"} onClick={handleJoinRoom}/>
 }
 

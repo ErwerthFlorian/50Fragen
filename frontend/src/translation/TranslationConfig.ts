@@ -7,9 +7,10 @@ const TranslatedComponents = {
    AvatarLabel: "AvatarLabel",
    AvatarUploader: "AvatarUploader",
    CreateRoomHeader: "CreateRoomHeader",
-   TopicDifficulty: "TopicDifficulty",
-   TopicDate: "TopicDate",
-   TopicNumQuestions: "TopicNumQuestions",
+   CategoryDifficulty: "CategoryDifficulty",
+   CategoryDate: "CategoryDate",
+   CategoryNumQuestions: "CategoryNumQuestions",
+   TopicAvailableCategories: "TopicAvailableCategories",
    LanguageToggle: "LanguageToggle",
    ExplainationHeader: "ExplainationHeader",
    ExplainationStep1: "ExplainationStep1",
@@ -28,6 +29,10 @@ export const Translations: Record<TranslatedComponents, Translation> = {
       de: "Spieleshows Pietsmiet",
       en: "Gameshows Pietsmiet",
    },
+   TopicAvailableCategories: {
+      de: "Verfügbare Kategorien",
+      en: "Avalable Categories",
+   },
    AvatarLabel: {
       de: "Anzeigename",
       en: "Display name",
@@ -36,15 +41,15 @@ export const Translations: Record<TranslatedComponents, Translation> = {
       de: "Sprache umschalten",
       en: "Toggle language",
    },
-   TopicDate: {
+   CategoryDate: {
       de: "Datum",
       en: "Date",
    },
-   TopicDifficulty: {
+   CategoryDifficulty: {
       de: "Schwierigkeit",
       en: "Difficulty"
    },
-   TopicNumQuestions: {
+   CategoryNumQuestions: {
       de: "Anzahl der Fragen",
       en: "Number of Questions"
    },

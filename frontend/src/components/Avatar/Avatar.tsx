@@ -13,7 +13,8 @@ export type AvatarURL = `blob:http://${string}` | undefined;
 export const Avatar = () => {
    const {image, uploadAvatar} = useImage();
    const [isHovering, setIsHovering] = useState(false);
-   const avatar = useTranslation("Avatar", "Label");
+   const avatarLabel = useTranslation("AvatarLabel");
+   const avatarUploader = useTranslation("AvatarUploader");
    const hoverClass = useMemo(() => cx(avatarClasses.paragraphPositioningWrapper, css({filter: isHovering ? "opacity(1)" : "opacity(0)"})), [isHovering]);
    const {setPlayerName} = useContext(GameContext);
 
@@ -26,8 +27,8 @@ export const Avatar = () => {
          <div onPointerEnter={() => setIsHovering(true)} onPointerLeave={() => setIsHovering(false)}
               onClick={uploadAvatar} className={avatarClasses.avatar}>{image}</div>
       </div>
-      <div className={hoverClass}><p>dasfdsaf</p></div>
-      <Input onValueChange={handleNameChange} label={"dasdfasdf"}/></div>
+      <div className={hoverClass}><p>{avatarUploader}</p></div>
+      <Input onValueChange={handleNameChange} label={avatarLabel}/></div>
 }
 
 
