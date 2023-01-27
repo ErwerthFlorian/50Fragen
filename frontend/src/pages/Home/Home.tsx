@@ -5,16 +5,16 @@ import {Paths} from "../../App";
 import {GameContext} from "../../context/GameContext";
 import {getClasses} from "../../components/types";
 import {Container} from "../../components/Container/Container";
-import {MainHeader} from "../../components/Headline/Headline";
 import {Avatar} from "../../components/Avatar/Avatar";
 import {RoomButton} from "../../components/Button/button";
+import {Title} from "../../components/Title/Title";
 
 const cssClasses = getClasses(styles);
 
 export const Home = () => {
    return (
       <Container>
-         <MainHeader headerStyle={"h1"}/>
+         <Title/>
          <Avatar/>
          <div className={cssClasses.buttons}>
             <CreateRoom/>

@@ -4,12 +4,11 @@ import {topics} from "../../questions/Topics";
 import {getClasses} from "../../components/types";
 import {Container} from "../../components/Container/Container";
 import {Topic} from "../../components/Topic/Topic";
-import {Headline} from "../../components/Headline/Headline";
 
 export const CreateRoom = () => {
    const translation = useTranslation("CreateRoomHeader");
    return <>
-      <Headline headerStyle={"h2"}>{translation}</Headline>
+      <h2>{translation}</h2>
       <Topics/>
    </>
 }

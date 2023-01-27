@@ -20,8 +20,8 @@ export type TranslatedComponents = keyof typeof TranslatedComponents;
 
 export const Translations: Record<TranslatedComponents, Translation> = {
    MainHeader: {
-      de: "50 Fragen - Pietsmiet",
-      en: "50 Questions - Pietsmiet",
+      de: "Spieleshows Pietsmiet",
+      en: "Gameshows Pietsmiet",
    },
    AvatarLabel: {
       de: "Anzeigename",
@@ -32,16 +32,16 @@ export const Translations: Record<TranslatedComponents, Translation> = {
       en: "Toggle language",
    },
    TopicDate: {
-     de: "Datum",
+      de: "Datum",
       en: "Date",
    },
    TopicDifficulty: {
-     de: "Schwierigkeit",
-     en: "Difficulty"
+      de: "Schwierigkeit",
+      en: "Difficulty"
    },
    TopicNumQuestions: {
-      de:"Anzahl der Fragen",
-      en:"Number of Questions"
+      de: "Anzahl der Fragen",
+      en: "Number of Questions"
    },
    AvatarUploader: {
       de: "Eigenen Avatar benutzen",
@@ -50,7 +50,7 @@ export const Translations: Record<TranslatedComponents, Translation> = {
    CreateRoomButton: {
       de: "RAUM ERSTELLEN",
       en: "CREATE ROOM",
-   },CreateRoomHeader: {
+   }, CreateRoomHeader: {
       de: "Wähle ein Thema oder erstelle eine neues Thema.",
       en: "Choose a topic or create a new topic.",
    },
@@ -61,7 +61,7 @@ export const Translations: Record<TranslatedComponents, Translation> = {
    JoinRoomLabel: {
       de: "Raumnummer",
       en: "Room number",
-   },JoinRoomLabelError: {
+   }, JoinRoomLabelError: {
       de: "Bitte gib eine Nummer mit 5 Zahlen ein.",
       en: "Please enter a number with 5 digits.",
    },
