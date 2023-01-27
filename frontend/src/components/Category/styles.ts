@@ -1,22 +1,17 @@
 export default {
-   difficulty: {
-   },
-   date: {
-
-   },
-   numQuestions: {
-
-   },
+   difficulty: {},
+   date: {},
+   numQuestions: {},
    title: {
-      position:"relative",
+      position: "relative",
       fontSize: 20,
    },
    cardWrapper: {
       display: "flex",
-      position:"relative",
+      position: "relative",
       flexDirection: "column",
-      justifyContent: "space-between",
-      width: "calc(100% - 20px)",
+      width: 300,
+      height: 200,
       padding: 10,
       backgroundColor: "lightblue",
       borderRadius: 10,

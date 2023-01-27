@@ -7,25 +7,22 @@ import {TranslatedComponents} from "../../translation/TranslationConfig";
 import {useTranslation} from "../../translation/useTranslation";
 
 
-interface Button extends WithChildren {
+interface Button extends Partial<WithChildren> {
    onClick: () => void;
-   className?: string
+   className?: string,
+   translationComponent?: TranslatedComponents,
+
 }
 
 const cssClasses = getClasses(styles);
 
-export const Button = ({children, onClick, className}: Button) => {
-
+export const Button = ({children, onClick, className, translationComponent}: Button) => {
    const buttonClasses = useMemo(() => cx(cssClasses.button, className), [className]);
-
    return <button className={buttonClasses} onClick={onClick}>{children}</button>
 }
 
-interface RoomButton extends Button {
-   translationComponent: TranslatedComponents,
-}
-
-export const RoomButton = ({onClick, translationComponent}: Omit<RoomButton, "children">) => {
+export const RoomButton = ({onClick, translationComponent, className, children}: Button) => {
    const translation = useTranslation(translationComponent);
-   return <Button className={cssClasses.roomButton} onClick={onClick}>{translation}</Button>
+   const buttonClasses = useMemo(() => cx(cssClasses.roomButton, className), [className]);
+   return <Button className={buttonClasses} onClick={onClick}>{translation}</Button>
 }

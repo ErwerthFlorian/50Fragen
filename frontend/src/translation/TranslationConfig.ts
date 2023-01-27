@@ -6,11 +6,13 @@ const TranslatedComponents = {
    JoinRoomLabelError: "JoinRoomLabelError",
    AvatarLabel: "AvatarLabel",
    AvatarUploader: "AvatarUploader",
-   CreateRoomHeader: "CreateRoomHeader",
+   ChooseCategoryHeader: "ChooseCategoryHeader",
+   ChooseCategoryReturn: "ChooseCategoryReturn",
    CategoryDifficulty: "CategoryDifficulty",
    CategoryDate: "CategoryDate",
    CategoryNumQuestions: "CategoryNumQuestions",
    TopicAvailableCategories: "TopicAvailableCategories",
+   TopicReturnHome: "TopicReturnHome",
    LanguageToggle: "LanguageToggle",
    ExplainationHeader: "ExplainationHeader",
    ExplainationStep1: "ExplainationStep1",
@@ -33,6 +35,10 @@ export const Translations: Record<TranslatedComponents, Translation> = {
       de: "Verfügbare Kategorien",
       en: "Avalable Categories",
    },
+   TopicReturnHome: {
+      de: "Zurück zum Hauptmenü",
+      en: "Back to main menu",
+   },
    AvatarLabel: {
       de: "Anzeigename",
       en: "Display name",
@@ -49,6 +55,10 @@ export const Translations: Record<TranslatedComponents, Translation> = {
       de: "Schwierigkeit",
       en: "Difficulty"
    },
+   ChooseCategoryReturn: {
+      de: "Zurück zur Spielauswahl",
+      en: "Back to game selection",
+   },
    CategoryNumQuestions: {
       de: "Anzahl der Fragen",
       en: "Number of Questions"
@@ -60,9 +70,10 @@ export const Translations: Record<TranslatedComponents, Translation> = {
    CreateRoomButton: {
       de: "RAUM ERSTELLEN",
       en: "CREATE ROOM",
-   }, CreateRoomHeader: {
-      de: "Wähle ein Thema oder erstelle eine neues Thema.",
-      en: "Choose a topic or create a new topic.",
+   },
+   ChooseCategoryHeader: {
+      de: "Wähle eine Kategorie",
+      en: "Choose a category.",
    },
    JoinRoomButton: {
       de: "RAUM BEITRETEN",
