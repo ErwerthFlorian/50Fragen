@@ -1,18 +1,12 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {Home} from "./pages/Home";
-import React, {useEffect} from "react";
-import {useTheme} from "./themes/useCurrentTheme";
+import {Home} from "./pages/Home/Home";
+import React from "react";
 import {CreateRoom} from "./pages/CreateRoom";
 import {GameRoom} from "./pages/GameRoom";
 import {GameContextProvider} from "./context/GameContext";
 
 const body = document.body;
 export const App = () => {
-   const theme = useTheme();
-   useEffect(() => {
-      body.style.color = theme.textColor;
-      body.style.backgroundColor = theme.pageColor;
-   }, [theme])
 
    return (
       <GameContextProvider>

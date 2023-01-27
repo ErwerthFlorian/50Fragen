@@ -1,6 +1,6 @@
 import styles from "./styles";
 import {getClasses} from "../types";
-import {useCallback, useContext, useEffect, useMemo, useState} from "react";
+import {useCallback, useContext, useMemo, useState} from "react";
 import {Input} from "../../Input/Input";
 import {useTheme} from "../../../themes/useCurrentTheme";
 import {css, cx} from "@emotion/css";
@@ -20,11 +20,10 @@ export const Avatar = () => {
    const avatarUploader = useTranslation("AvatarUploader");
    const avatarClass = useMemo(() => cx(avatarClasses.avatar, css({color: theme.textColor})), [theme]);
    const hoverClass = useMemo(() => cx(avatarClasses.paragraphPositioningWrapper, css({filter: isHovering ? "opacity(1)":"opacity(0)"})), [isHovering]);
-   const {name, setName} = useName();
+   const {setPlayerName} = useContext(GameContext);
 
    const handleNameChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-
-      setName(e.currentTarget.value);
+      setPlayerName?.(e.currentTarget.value);
    }, []);
 
    return <div className={avatarClasses.wrapper}>
@@ -32,23 +31,14 @@ export const Avatar = () => {
          <div onPointerEnter={() => setIsHovering(true)} onPointerLeave={() => setIsHovering(false)} onClick={uploadAvatar} className={avatarClass}>{image}</div>
       </div>
         <div className={hoverClass}><Paragraph>{avatarUploader}</Paragraph></div>
-      <Input hasError={false} onValueChange={handleNameChange} label={avatarLabel}/></div>
+      <Input onValueChange={handleNameChange} label={avatarLabel}/></div>
 }
 
-const useName =()=>{
-   const [name, setName] = useState<string>("");
-   const {setPlayerName} = useContext(GameContext);
-   useEffect(() => {
-      setPlayerName?.(name);
-   }, [name])
-   return {name, setName};
-}
 
 const useImage = () => {
 
    const defaultAvatar = useThemedAvatarSVG();
-   const [image, setImage] = useState<AvatarURL>();
-   const {setPlayerAvatar} = useContext(GameContext)
+   const {avatar, setPlayerAvatar} = useContext(GameContext);
 
    const imageClasses = useMemo(() => css({
       width: 200,
@@ -59,7 +49,7 @@ const useImage = () => {
    }), []);
 
    return {
-      image: <img alt={"round foo"} className={imageClasses} src={image ?? defaultAvatar}/>,
+      image: <img alt={"round foo"} className={imageClasses} src={avatar ?? defaultAvatar}/>,
       uploadAvatar: () => {
          const link = document.createElement("input");
          link.type = "file";
@@ -69,7 +59,6 @@ const useImage = () => {
             const file = link.files?.[0];
             if (file) {
                const blob = URL.createObjectURL(file) as AvatarURL;
-               setImage(blob);
                setPlayerAvatar?.(blob);
             }
             link.remove();

@@ -1,6 +1,7 @@
 import {Socket} from "socket.io";
-import {Room} from "./types";
+import {ClientToServerEvents, Room, ServerToClientEvents} from "./types";
 import {Adapter} from "socket.io-adapter";
+import {ServerSocket} from "./server";
 
 const numbers = "1234567890";
 
@@ -18,12 +19,7 @@ const isPlayerInRoom = (room: Room, id: string) => {
    return Boolean(room.players.find(player => player.id === id));
 }
 
-export const joinRoom = (roomNumber: string, socket: Socket) => {
-   socket.join(roomNumber);
-   return {name: Math.random().toString(), avatar: undefined};
-}
-
-export const roomListeners = (adapter: Adapter, socket: Socket) => {
+export const roomListeners = (adapter: Adapter, socket: Socket<ClientToServerEvents & ServerToClientEvents>) => {
 
    socket.on("createRoom", () => {
       const roomNumber = createRandomId();
@@ -31,7 +27,8 @@ export const roomListeners = (adapter: Adapter, socket: Socket) => {
       socket.emit("roomCreated", roomNumber);
    })
 
-   socket.on("joinRoom", (roomNumber) => {
-      socket.to(roomNumber).emit("joinedRoom", joinRoom(roomNumber, socket));
+   socket.on("joinRoom", (playerName, roomNumber, avatar) => {
+      socket.join(roomNumber);
+      ServerSocket.instance.io.to(roomNumber).emit("joinedRoom", playerName, roomNumber, avatar);
    });
 }

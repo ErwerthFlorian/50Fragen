@@ -18,7 +18,11 @@ const classNames = getClasses(styles);
 export const Button = ({children, onClick, className}: Button) => {
    const theme = useTheme();
    const classes = useMemo(() => cx(classNames.button, css({
+      ":hover": {
+         backgroundColor: theme.hoverColor,
+      },
       backgroundColor: theme.backgroundColor,
+      borderColor: theme.borderColor,
       color: theme.textColor,
    }), className), [theme]);
    return <button className={classes} onClick={onClick}>{children}</button>

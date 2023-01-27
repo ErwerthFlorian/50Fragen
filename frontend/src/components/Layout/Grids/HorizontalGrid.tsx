@@ -11,6 +11,6 @@ interface HorizontalGrid extends WithChildren {
 
 const gridClasses = getClasses(styles);
 export const HorizontalGrid = ({children, spaces, extraStyles}: HorizontalGrid) => {
-      const horizontalClasses = useMemo(() => cx(gridClasses.grid, css({gridTemplateColumns: `repeat(${spaces}, ${100 / spaces}%)`}), extraStyles), []);
+      const horizontalClasses = useMemo(() => cx(gridClasses.grid, css({gridTemplateColumns: `repeat(${spaces}, 1fr)`}), extraStyles), []);
       return <div className={horizontalClasses}>{children}</div>
 }

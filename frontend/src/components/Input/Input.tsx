@@ -5,20 +5,19 @@ import {css, cx} from "@emotion/css";
 import {useTheme} from "../../themes/useCurrentTheme";
 
 interface Input {
-   hasError: boolean;
    onValueChange: (e: React.FormEvent<HTMLInputElement>) => void;
    label: string,
 }
 
 const inputClass = getClasses(styles);
 
-export const Input = ({label, onValueChange, hasError}: Input) => {
+export const Input = ({label, onValueChange}: Input) => {
    const inputId = useId();
    const [value, setValue] = useState<string>("");
    const theme = useTheme();
 
    const inputWrapperClasses = useMemo(() => cx(inputClass.inputWrapper, value ? css(shiftLabel()) : {}, ), [value]);
-   const inputClasses = useMemo(() => cx(inputClass.input, hasError ? css({borderColor: "red"}, ) : {}, css({backgroundColor: theme.backgroundColor})), [hasError, theme])
+   const inputClasses = useMemo(() => cx(inputClass.input, css({backgroundColor: theme.backgroundColor})), [theme])
 
    const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.currentTarget.value)
