@@ -19,8 +19,9 @@ export default {
       position: "absolute",
       bottom: 30,
    },
-   points: {
-
+   pointsWrapper: {
+      display:"grid",
+      gridTemplateColumns: "1fr 1fr",
    },
    buzzer: {
       backgroundColor: "red",

@@ -1,10 +1,7 @@
 import {AvatarURL} from "../Avatar/Avatar";
-import {css, cx} from "@emotion/css";
 import {getClasses} from "../types";
 import styles from "./styles";
-import {useThemeWithCss} from "../../../themes/useCurrentTheme";
-import {KeyboardEvent, useEffect, useMemo} from "react";
-import {HorizontalGrid} from "../../Layout/Grids/HorizontalGrid";
+import {KeyboardEvent, useEffect} from "react";
 import {socket} from "../../../socket/socket";
 
 export interface Player {
@@ -20,9 +17,6 @@ const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
    }
 }
 export const Player = ({name, avatar}: Player) => {
-   const {themeClasses} = useThemeWithCss();
-   const wrapper = useMemo(() => cx(cssClasses.player, themeClasses), [cssClasses, themeClasses]);
-
    useEffect(() => {
       return () => {
          socket.on("communicateBuzzered", (socketId) => {
@@ -35,9 +29,9 @@ export const Player = ({name, avatar}: Player) => {
 
 
    return (
-      <div className={wrapper} onKeyDown={handleKeyDown}>
-         <HorizontalGrid extraStyles={css({height:30, width: "50%"})} spaces={2}>
-            <div className={cssClasses.points}>0 punkte</div></HorizontalGrid>
+      <div className={cssClasses.player} onKeyDown={handleKeyDown}>
+         <div className={cssClasses.pointsWrapper}>
+            0 punkte</div>
          <input type="text" className={cssClasses.text} />
          <div className={cssClasses.name}>{name}</div>
       </div>

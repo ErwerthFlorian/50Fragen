@@ -5,7 +5,7 @@ import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {Button} from "../Button/button";
 import {useThemeWithCss} from "../../../themes/useCurrentTheme";
 import {getClasses} from "../types";
-import {css, cx} from "@emotion/css";
+import {css} from "@emotion/css";
 
 interface ModalProps extends WithChildren {
    open: boolean,
@@ -38,8 +38,6 @@ const modalClassNames = getClasses(styles);
 
 export const Modal = ({open, children, onClose}: ModalProps) => {
    const modalRef = useRef<HTMLDialogElement>(null)
-   const {themeClasses} = useThemeWithCss();
-   const dialogClasses = useMemo(() => cx(themeClasses, modalClassNames.dialog), []);
 
    useEffect(() => {
       if(open) {
@@ -52,7 +50,7 @@ export const Modal = ({open, children, onClose}: ModalProps) => {
       onClose();
    }, [onClose, modalRef])
 
-   return <dialog className={dialogClasses} ref={modalRef}><button className={modalClassNames.modalClose} onClick={close}><Close className={modalClassNames.modalCloseIcon}/></button>{children}</dialog>
+   return <dialog className={modalClassNames.dialog} ref={modalRef}><button className={modalClassNames.modalClose} onClick={close}><Close className={modalClassNames.modalCloseIcon}/></button>{children}</dialog>
 }
 
 export const ModalTitle = ({children}: WithChildren) => {

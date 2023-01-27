@@ -2,6 +2,10 @@ export default {
    toggleWrapper: {
       width: 125,
    },
+   wrapper: {
+     display: "grid",
+     gridTemplateColumns: "1fr 1fr 1fr",
+   },
    toggle: {
       all: "unset",
       border: "1px solid black",

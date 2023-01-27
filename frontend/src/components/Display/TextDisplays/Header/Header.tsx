@@ -21,9 +21,7 @@ interface HeaderProps extends Partial<WithChildren> {
 const headerClass = getClasses(styles);
 export const Header = ({ headerStyle, children }: HeaderProps) => {
       const theme = useTheme();
-
       const headerClasses = useMemo(() => cx(headerClass.header, css({color: theme.textColor})), [theme]);
-
       return React.createElement(headerStyle, {
             children: children, className: headerClasses
       });
@@ -32,7 +30,7 @@ export const Header = ({ headerStyle, children }: HeaderProps) => {
 export const MainHeader = ({headerStyle}: HeaderProps) => {
       const theme = useTheme();
       const translation = useTranslation("MainHeader");
-      const mainHeaderClasses = useMemo(() => cx(css({fontSize: 60, color: theme.textColor})), [theme]);
+      const mainHeaderClasses = useMemo(() => cx(css({fontSize: 60})), [theme]);
       const controllerClasses = useMemo(() => cx(css({position: "absolute", top: 0,right: -33, transform: "translateY(-34%) rotate(45deg)", width: 100})), []);
       const wrapperClasses = useMemo(() => cx(css({position: "relative"}), ), []);
       const Title = React.createElement(headerStyle, {

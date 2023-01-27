@@ -1,9 +1,9 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Home} from "./pages/Home/Home";
 import React from "react";
-import {CreateRoom} from "./pages/CreateRoom";
-import {GameRoom} from "./pages/GameRoom";
 import {GameContextProvider} from "./context/GameContext";
+import {CreateRoom} from "./pages/CreateRoom/CreateRoom";
+import {GameRoom} from "./pages/GameRoom/GameRoom";
 
 const body = document.body;
 export const App = () => {

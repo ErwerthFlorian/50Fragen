@@ -15,10 +15,8 @@ export type AvatarURL = `blob:http://${string}` | undefined;
 export const Avatar = () => {
    const {image, uploadAvatar} = useImage();
    const [isHovering, setIsHovering] = useState(false);
-   const theme = useTheme();
    const avatarLabel = useTranslation("AvatarLabel");
    const avatarUploader = useTranslation("AvatarUploader");
-   const avatarClass = useMemo(() => cx(avatarClasses.avatar, css({color: theme.textColor})), [theme]);
    const hoverClass = useMemo(() => cx(avatarClasses.paragraphPositioningWrapper, css({filter: isHovering ? "opacity(1)":"opacity(0)"})), [isHovering]);
    const {setPlayerName} = useContext(GameContext);
 
@@ -28,7 +26,7 @@ export const Avatar = () => {
 
    return <div className={avatarClasses.wrapper}>
       <div className={avatarClasses.avatarWrapper}>
-         <div onPointerEnter={() => setIsHovering(true)} onPointerLeave={() => setIsHovering(false)} onClick={uploadAvatar} className={avatarClass}>{image}</div>
+         <div onPointerEnter={() => setIsHovering(true)} onPointerLeave={() => setIsHovering(false)} onClick={uploadAvatar} className={avatarClasses.avatar}>{image}</div>
       </div>
         <div className={hoverClass}><Paragraph>{avatarUploader}</Paragraph></div>
       <Input onValueChange={handleNameChange} label={avatarLabel}/></div>

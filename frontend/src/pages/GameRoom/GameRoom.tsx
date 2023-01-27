@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {Player} from "../components/Display/Player/Player";
-import {socket} from "../socket/socket";
+import {Player} from "../../components/Display/Player/Player";
+import {socket} from "../../socket/socket";
 //players.map((player) => <Player key={player.name} name={player.name} avatar={player.avatar}/>)
 export const GameRoom = () => {
    const {players} = usePlayers();
