@@ -1,7 +1,7 @@
 import {ChangeEvent, useCallback, useId, useMemo, useState} from "react";
-import {getClasses} from "../Display/types";
 import styles, {shiftLabel} from "./styles";
 import {css, cx} from "@emotion/css";
+import {getClasses} from "../types";
 
 interface Input {
    onValueChange: (e: React.FormEvent<HTMLInputElement>) => void;
@@ -14,7 +14,7 @@ export const Input = ({label, onValueChange}: Input) => {
    const inputId = useId();
    const [value, setValue] = useState<string>("");
 
-   const inputWrapperClasses = useMemo(() => cx(inputClass.inputWrapper, value ? css(shiftLabel()) : {}, ), [value]);
+   const inputWrapperClasses = useMemo(() => cx(inputClass.inputWrapper, value ? css(shiftLabel()) : {},), [value]);
 
    const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.currentTarget.value)

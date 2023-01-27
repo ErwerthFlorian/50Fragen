@@ -1,13 +1,13 @@
 import {useCallback, useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./styles";
-import {getClasses} from "../../components/Display/types";
-import {Container} from "../../components/Layout/container/container";
-import {MainHeader} from "../../components/Display/TextDisplays/Header/Header";
-import {Avatar} from "../../components/Display/Avatar/Avatar";
 import {Paths} from "../../App";
-import {RoomButton} from "../../components/Display/Button/button";
 import {GameContext} from "../../context/GameContext";
+import {getClasses} from "../../components/types";
+import {Container} from "../../components/Container/Container";
+import {MainHeader} from "../../components/Headline/Headline";
+import {Avatar} from "../../components/Avatar/Avatar";
+import {RoomButton} from "../../components/Button/button";
 
 const cssClasses = getClasses(styles);
 
@@ -16,7 +16,7 @@ export const Home = () => {
       <Container>
          <MainHeader headerStyle={"h1"}/>
          <Avatar/>
-         <div className={cssClasses.buttons} >
+         <div className={cssClasses.buttons}>
             <CreateRoom/>
             <JoinRoom/>
          </div>

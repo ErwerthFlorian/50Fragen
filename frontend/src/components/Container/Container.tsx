@@ -1,6 +1,6 @@
 import styles from "./styles";
-import {WithChildren} from "../../../types";
-import {getClasses} from "../../Display/types";
+import {getClasses} from "../types";
+import {WithChildren} from "../../types";
 
 const classes = getClasses(styles);
 
