@@ -1,0 +1,39 @@
+.avatar {
+    width: 20px;
+    height: 20px;
+}
+.avatar-wrapper {
+    font-size: 16px;
+    background-color: grey;
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 20px auto;
+    align-items: center;
+    gap: 30px;
+    padding: 8px 16px;
+    min-width: 59px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.anchor {
+    position: relative;
+    left: 8px;
+    top: -2px;
+    width: calc(100% - 16px);
+}
+.avatar-outer-wrapper {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.avatar-icon-button::after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+}
+.menu-wrapper {
+    text-align: center;
+}

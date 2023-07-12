@@ -1,0 +1,25 @@
+.main-page-content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-page-title {
+    margin-bottom: 50px;
+}
+
+.main-page-description {
+    margin-bottom: 50px;
+}
+
+.main-page-name {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-page-actions {
+    padding: 15px;
+    max-width: 500px;
+}

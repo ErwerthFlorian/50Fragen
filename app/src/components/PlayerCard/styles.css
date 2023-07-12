@@ -1,0 +1,32 @@
+.player-card {
+    display: grid;
+    height: fit-content;
+    width: 240px;
+    grid-template-rows: 30px 30px 30px;
+}
+
+.player-name {
+    font-size: 18px;
+    padding: 5px;
+    justify-self: center;
+
+}
+
+.player-name-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buzzer {
+    justify-self: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: grey;
+}
+
+.buzzered {
+    background-color: red;
+}

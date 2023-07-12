@@ -1,0 +1,37 @@
+.header {
+    height: 70px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.header-login {
+    display: grid;
+    grid-template-rows: auto 10px;
+}
+
+.header-group {
+    display: grid;
+    grid-template-columns: auto auto 100px;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-link {
+    color: black !important;
+    cursor: pointer;
+}
+
+.header-icon {
+    cursor: pointer;
+    height: 50px !important;
+    width: 50px !important
+}
+
+.header-icon > img {
+    position: relative;
+    left: -1px;
+    width: calc(100% + 1px);
+}

@@ -1,0 +1,7 @@
+.icon:hover {
+    cursor: pointer;
+}
+
+.textfield {
+    max-width: 300px;
+}

@@ -1,0 +1,30 @@
+.play-page-players {
+    display: grid;
+    gap: 30px;
+    justify-self: start;
+    grid-template-columns: repeat(5, minmax(150px, 200px));
+}
+.play-page-buzzer {
+    background-color: grey;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    text-align: center;
+    justify-self: center;
+    align-self: end;
+    cursor: pointer;
+
+}
+.play-page-buzzered {
+    background-color: red;
+}
+
+.play-page-question {
+    text-align: center;
+    font-size: 30px;
+}
+.play-page {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 60px 200px 100px 200px 150px;
+}
