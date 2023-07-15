@@ -1,17 +1,61 @@
-import {QuestionPack} from "../types";
+import { QuestionPack } from "../types";
 
 export const got_question_pack: QuestionPack = {
     ["Leichte Fragen"]: {
-        id: "D2QzLWimDug",
+        videoId: "D2QzLWimDug",
         pairs: [
             {
                 question: "Welche Worte stehen unter dem Banner der Starks?",
                 answer: "Der Winter naht.",
             },
+            {
+                question: "Wer ist Arya Stark?",
+                answer: "Die Tochter von Ned Stark.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
+            {
+                question: "Hodor?",
+                answer: "Hodor.",
+            },
         ],
     },
     ["Mittelschwere Fragen"]: {
-        id: "ThBSj7nE4e0",
+        videoId: "ThBSj7nE4e0",
         pairs: [
             {
                 question: "Welche Worte stehen unter dem Banner der Starks?",
@@ -20,7 +64,7 @@ export const got_question_pack: QuestionPack = {
         ],
     },
     ["Schwere Fragen"]: {
-        id: "cNW404dzi_s",
+        videoId: "cNW404dzi_s",
         pairs: [
             {
                 question: "Welche Worte stehen unter dem Banner der Starks?",

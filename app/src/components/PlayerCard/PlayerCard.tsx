@@ -1,4 +1,3 @@
-import { Player } from "../../../../backend";
 import "./styles.css";
 import { Paper } from "@mui/material";
 import { useAppSelector } from "../../store";
@@ -6,7 +5,7 @@ import { getBuzzer } from "../../store/selectors/gameSelectors.ts";
 import { useMemo } from "react";
 import { socket } from "../../index.tsx";
 
-export const PlayerCard = ({ userName }: Omit<Player, "socketId">) => {
+export const PlayerCard = ({ userName }: { userName: string }) => {
     const buzzer = useAppSelector(getBuzzer);
 
     const buzzerClasses = useMemo(() => `${Boolean(buzzer && buzzer.socketId === socket.id) && "buzzered"} buzzer`, [buzzer, socket]);

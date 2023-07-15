@@ -15,8 +15,8 @@ export const ChooseQuestionSet = () => {
     const navigate = useNavigate();
     const extractedInfos = useMemo(
         () =>
-            Object.entries(infos?.packs ?? []).map(([packName, { id }]) => {
-                return { packName, id };
+            Object.entries(infos?.packs ?? []).map(([packName, { videoId }]) => {
+                return { packName, videoId: videoId };
             }),
         [infos]
     );
@@ -47,12 +47,12 @@ export const ChooseQuestionSet = () => {
             {chosenTopic && <h2>Wähle ein Frageset zur Kategorie {chosenTopic}</h2>}
             {infos && (
                 <div className="pack-wrapper">
-                    {extractedInfos.map(({ packName, id }) => (
+                    {extractedInfos.map(({ packName, videoId }) => (
                         <CardWithPicture
                             cardClasses="pack"
                             cardImageClasses="pack-image"
                             onClickCard={() => handleSelectQuestionPack(packName)}
-                            image={getYoutubePictureSrc(id)}
+                            image={getYoutubePictureSrc(videoId)}
                         >
                             {packName}
                         </CardWithPicture>
