@@ -5,7 +5,7 @@
     grid-template-columns: repeat(5, minmax(150px, 200px));
 }
 .play-page-buzzer {
-    background-color: grey;
+    background-color: white;
     width: 150px;
     height: 150px;
     border-radius: 150px;
@@ -13,10 +13,12 @@
     justify-self: center;
     align-self: end;
     cursor: pointer;
-
 }
 .play-page-buzzered {
     background-color: red;
+}
+.play-page-buzzer-locked {
+    background-color: grey;
 }
 
 .play-page-question {

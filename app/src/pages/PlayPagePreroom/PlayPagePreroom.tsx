@@ -10,6 +10,7 @@ import { PlayerNameOverlay } from "../../components/PlayerNameOverlay/PlayerName
 import { StartGameFunctions } from "../../serverEvents/functions/startGame.ts";
 import { CreateRoomFunctions } from "../../serverEvents/functions/createRoom.ts";
 import { JoinRoomFunctions } from "../../serverEvents/functions/joinRoom.ts";
+import { registerPlayPagePreroomEvents } from "../../serverEvents/playPagePreroomEvents.tsx";
 
 const HostContent = () => {
     const connectedPlayers = useAppSelector(getConnectedPlayers);
@@ -52,6 +53,7 @@ export const PlayPagePreroom = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const isHost = useAppSelector(getIsModerator);
+    registerPlayPagePreroomEvents();
 
     useEffect(() => {
         if (isJoining && id) {

@@ -5,11 +5,14 @@
     grid-template-rows: 30px 30px 30px;
 }
 
+.player-card-buzzered {
+    box-shadow: red 0 0 5px 0 !important;
+}
+
 .player-name {
     font-size: 18px;
     padding: 5px;
     justify-self: center;
-
 }
 
 .player-name-wrapper {

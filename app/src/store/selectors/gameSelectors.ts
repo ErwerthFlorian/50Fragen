@@ -12,6 +12,7 @@ export const getConnectedPlayers = createSelector([getGameState], (gameState) =>
     return gameState.connectedPlayers;
 });
 export const getBuzzer = createSelector([getGameState], (state) => state.buzzer);
+export const getIsBuzzerLocked = createSelector([getGameState], (state) => state.buzzerLocked);
 export const getHostName = createSelector([getGameState], (state) => state.hostName);
 export const getGameStarted = createSelector([getGameState], (state) => state.gameStarted);
 export const getIsModerator = createSelector([getHostName, getUserName], (hostname, username) => hostname === username);
@@ -22,3 +23,4 @@ export const getCurrentPairs = createSelector(
 );
 export const getNumberOfQuestions = createSelector([getCurrentPairs], (pairs) => pairs?.length);
 export const getCurrentQuestion = createSelector([getCurrentPairs, getQuestionAnserIndex], (pairs, index) => pairs && pairs[index]);
+export const getIsAnswerRevealed = createSelector([getGameState], (state) => state.answerRevealed);

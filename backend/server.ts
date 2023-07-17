@@ -3,10 +3,11 @@ import {GeneralTopicName} from "../app/src/data/";
 
 const express = require("express");
 const {Server} = require("socket.io");
+export const SERVER_PORT = 5121;
 
 const app = express();
-const server = app.listen(3001, () => {
-   console.log("Server is listening on port 3001");
+const server = app.listen(SERVER_PORT, () => {
+   console.log(`Server is listening on port ${SERVER_PORT}`);
 });
 
 export type Player = { socketId: string; userName: string, points: number };
@@ -23,15 +24,20 @@ export type RoomData = {
 
 const roomData: RoomData = {};
 
-
 export type IncommingMessages  = {
    connection: "connection";
    ["createRoom/in"]: (roomNumber: string, chosenGeneralTopic: GeneralTopicName, chosenPackname: string, hostName: string) => void;
    ["joinRoom/in"]: (roomNumber: string, userName: string, socketId: string) => void;
    ["leaveRoom/in"]: (roomNumber: string, userName: string) => void;
-   ["buzzer/in"]: (roomNumber: string, socketId: string) => void;
+   ["buzzer/in"]: (roomNumber: string, player: Omit<Player, "points">) => void;
+   ["lockBuzzer/in"]: (roomNumber: string, locked: boolean) => void;
    ["resetBuzzer/in"]: (roomNumber: string) => void;
    ["startGame/in"]: (roomNumber: string) => void;
+   ["revealAnswer/in"]: (roomNumber: string) => void;
+   ["question/next/in"]: (roomNumber: string) => void;
+   ["question/previous/in"]: (roomNumber: string) => void;
+   ["correctAnswer/in"]: (roomNumber: string, player: Player) => void;
+   ["incorrectAnswer/in"]: (roomNumber: string, player: Player) => void;
 }
 
 export type OutgoingMessages = {
@@ -42,9 +48,15 @@ export type OutgoingMessages = {
    ["joinRoom/error"]: (message: string) => void;
    ["leaveRoom/success"]: (roomData: RoomData[string]) => void;
    ["leaveRoom/error"]: (message?: string) => void;
-   ["buzzer/out"]: (buzzerData: string) => void;
+   ["buzzer/out"]: (player: Omit<Player, "points">) => void;
+   ["lockBuzzer/out"]: (locked: boolean) => void;
    ["resetBuzzer/out"]: () => void;
    ["startGame/out"]: () => void;
+   ["revealAnswer/out"]: () => void;
+   ["question/next/out"]: () => void;
+   ["question/previous/out"]: () => void;
+   ["correctAnswer/out"]: (players: Player[]) => void;
+   ["incorrectAnswer/out"]: (players: Player[]) => void;
 }
 
 
@@ -62,12 +74,49 @@ io.on("connection", (socket: Socket<IncommingMessages, OutgoingMessages>) => {
       console.log("socket disconnected");
    });
 
-   socket.on("buzzer/in", (roomNumber, socketId) => {
-      io.to(roomNumber).emit("buzzer/out", socketId);
+   socket.on("correctAnswer/in", (roomNumber, player) => {
+      const players = roomData[roomNumber].players
+      if(players) {
+         players.splice(players.findIndex((storedPlayer) => storedPlayer.socketId === player.socketId), 1, player);
+         roomData[roomNumber].players = players;
+         console.log(player, players, roomData[roomNumber].players);
+         io.to(roomNumber).emit("correctAnswer/out", players);
+      }
+   })
+
+   socket.on("incorrectAnswer/in", (roomNumber, player) => {
+      const players = roomData[roomNumber].players
+      if(players) {
+         players.forEach((storedPlayer) => {
+            if(storedPlayer.socketId !== player.socketId) {
+               storedPlayer.points += 1;
+            }
+         })
+         io.to(roomNumber).emit("correctAnswer/out", players);
+      }
+   })
+
+   socket.on("question/next/in", (roomNumber) => {
+      io.to(roomNumber).emit("question/next/out");
+   })
+   socket.on("question/previous/in", (roomNumber) => {
+      io.to(roomNumber).emit("question/previous/out");
+   })
+
+   socket.on("revealAnswer/in", (roomNumber) => {
+      io.in(roomNumber).emit("revealAnswer/out");
+   })
+
+   socket.on("buzzer/in", (roomNumber, player) => {
+      io.to(roomNumber).emit("buzzer/out", player);
    });
 
    socket.on("resetBuzzer/in", (roomNumber) => {
       io.to(roomNumber).emit("resetBuzzer/out");
+   })
+
+   socket.on("lockBuzzer/in", (roomNumber, locked) => {
+      io.to(roomNumber).emit("lockBuzzer/out", locked);
    })
 
    socket.on("disconnecting", () => {

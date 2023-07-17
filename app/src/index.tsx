@@ -15,7 +15,7 @@ import { PlayPagePreroom } from "./pages/PlayPagePreroom/PlayPagePreroom.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
-export const socket: Socket<OutgoingMessages, IncommingMessages> = io("http://localhost:3001", { autoConnect: true, forceNew: false });
+export const socket: Socket<OutgoingMessages, IncommingMessages> = io(`http://localhost:5121`, { autoConnect: true, forceNew: false });
 
 const App = () => {
     return (
