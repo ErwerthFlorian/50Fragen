@@ -79,7 +79,6 @@ io.on("connection", (socket: Socket<IncommingMessages, OutgoingMessages>) => {
       if(players) {
          players.splice(players.findIndex((storedPlayer) => storedPlayer.socketId === player.socketId), 1, player);
          roomData[roomNumber].players = players;
-         console.log(player, players, roomData[roomNumber].players);
          io.to(roomNumber).emit("correctAnswer/out", players);
       }
    })
