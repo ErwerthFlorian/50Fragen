@@ -18,7 +18,7 @@ import { PlayerCard } from "../../components/PlayerCard/PlayerCard.tsx";
 import "./styles.css";
 import { QuestionTracker } from "../../components/QuestionTracker/QuestionTracker.tsx";
 import { registerPlayPageEvents } from "../../serverEvents/playPageEvents.tsx";
-import { BuzzerFunctions, LockBuzzerFunctions } from "../../serverEvents/functions/buzzer.ts";
+import { BuzzerFunctions, LockBuzzerFunctions, ResetBuzzerFunctions } from "../../serverEvents/functions/buzzer.ts";
 import { getUserName } from "../../store/selectors/authSelectors.ts";
 import { AnswerFunctions, QuestionNext, QuestionPrevious } from "../../serverEvents/functions/questionAnswer.ts";
 
@@ -62,6 +62,10 @@ export const PlayPage = () => {
         QuestionPrevious.in(roomId);
     }, [roomId, currentQuestionAnswerIndex]);
 
+    const handleBuzzerReset = useCallback(() => {
+        ResetBuzzerFunctions.in(roomId);
+    }, [roomId]);
+
     if (!currentQuestionAnswerPair || !pairs) {
         return null;
     }
@@ -78,6 +82,7 @@ export const PlayPage = () => {
                         {currentQuestionAnswerIndex > 0 && <button onClick={handlePreviousQuestion}>Vorherige Frage</button>}
                         <button onClick={handleLockBuzzer}>{buzzerLocked ? "Buzzer entsperren" : "Buzzer sperren"}</button>
                         <button onClick={handleRevealAnswer}>Antwort anzeigen</button>
+                        {buzzer && <button onClick={handleBuzzerReset}>Buzzer zurücksetzen</button>}
                     </div>
                 ) : (
                     <button onClick={handleBuzzer} className={buzzerClassName} />

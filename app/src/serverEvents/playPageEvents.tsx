@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
 import { getQuestionAnserIndex } from "../store/selectors/gameSelectors.ts";
 import { QuestionNext, QuestionPrevious } from "./functions/questionAnswer.ts";
+import { ResetBuzzerFunctions } from "./functions/buzzer.ts";
 
 export const registerPlayPageEvents = () => {
     const dispatch = useAppDispatch();
@@ -33,6 +34,9 @@ export const registerPlayPageEvents = () => {
         });
         QuestionPrevious.out(() => {
             dispatch(setQuestionAnswerIndex(answerIndex - 1));
+        });
+        ResetBuzzerFunctions.out(() => {
+            dispatch(setActiveBuzzer(undefined));
         });
     }, [answerIndex]);
 };
